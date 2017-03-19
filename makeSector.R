@@ -1,4 +1,4 @@
-makeSector <- function(r=4,class="q",id=NULL,origin=c(1,0),n=100,angle1,angle2){
+makeSector <- function(r=4,class="q",id=NULL,origin=c(0,0),n=100,angle1,angle2){
   
   if((angle2 - angle1) %% (2*pi) == 0 & (angle1 != angle2)){
     stop("Variables angle1 and angle2 are multiples of 2*pi.  Set these unequal and try again, or, use function makeCircle.")
