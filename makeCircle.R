@@ -1,16 +1,18 @@
 makeCircle <- function(r=4,class="q",id=NULL,origin=c(0,0),n=100,angle1=0,angle2=2*pi){
   
-  x <- origin[1] + r*cos(seq(0,2*pi,length.out=n))
-  y <- origin[2] + r*sin(seq(0,2*pi,length.out=n))
+  x <- origin[1] + r*cos(seq(angle1,angle2,length.out=n))
+  y <- origin[2] + r*sin(seq(angle1,angle2,length.out=n))
   
   coords <- cbind(x,y)
-  coords <- rbind(coords,coords[1,])
+  coords <- rbind(coords)#,coords[1,])
   
   df <- data.frame(X=1,row.names="1")
   
   if(class=="p"){
     c1 <- SpatialPoints(coords)
-    rt <- c1
+    df <- data.frame(X=seq(1,nrow(c1@coords)),row.names=seq(1,nrow(c1@coords)))
+    c2 <- SpatialPointsDataFrame(c1,df)
+    rt <- c2
   } else if(class=="l"){
     c1 <- Line(coords)
     c2 <- Lines(list(c1),ID="1")
