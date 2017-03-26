@@ -6,7 +6,9 @@ makeSquare <- function(p1,p2,p3,p4,class="q",id=NULL){
   
   if(class=="p"){
     c1 <- SpatialPoints(coords)
-    rt <- c1
+    df <- data.frame(X=seq(1,nrow(c1@coords)),row.names=seq(1,nrow(c1@coords)))
+    c2 <- SpatialPointsDataFrame(c1,df)
+    rt <- c2
   } else if(class=="l"){
     c1 <- Line(coords)
     c2 <- Lines(list(c1),ID="1")

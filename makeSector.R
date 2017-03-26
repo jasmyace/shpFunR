@@ -21,7 +21,9 @@ makeSector <- function(r=4,class="q",id=NULL,origin=c(0,0),n=100,angle1,angle2){
   
   if(class=="p"){
     c1 <- SpatialPoints(coords)
-    rt <- c1
+    df <- data.frame(X=seq(1,nrow(c1@coords)),row.names=seq(1,nrow(c1@coords)))
+    c2 <- SpatialPointsDataFrame(c1,df)
+    rt <- c2
   } else if(class=="l"){
     c1 <- Line(coords)
     c2 <- Lines(list(c1),ID="1")

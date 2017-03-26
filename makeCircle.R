@@ -3,9 +3,13 @@ makeCircle <- function(r=4,class="q",id=NULL,origin=c(0,0),n=100,angle1=0,angle2
   x <- origin[1] + r*cos(seq(angle1,angle2,length.out=n))
   y <- origin[2] + r*sin(seq(angle1,angle2,length.out=n))
   
-  coords <- cbind(x,y)
-  coords <- rbind(coords)#,coords[1,])
+  x[abs(x) < 1e-5] <- 0
+  y[abs(y) < 1e-5] <- 0
   
+  #   ---- Deal with rounding issues. 
+  coords <- cbind(x,y)
+  coords <- rbind(coords)
+
   df <- data.frame(X=1,row.names="1")
   
   if(class=="p"){
