@@ -42,7 +42,7 @@ makeStar <- function(p=5,q=2,r=5,class="q",id=NULL,origin=c(0,0),angle1=0,angle2
 #     angle1 <- 0
 #     angle2 <- 2*pi
   
-  n <- p + 1
+  #n <- p + 1
   
   #   ---- Define the outer points of the star.  We add one more point so that it closes,
   #   ---- which is the default behavior of the makeCircle function.  
@@ -50,12 +50,22 @@ makeStar <- function(p=5,q=2,r=5,class="q",id=NULL,origin=c(0,0),angle1=0,angle2
  
   #   ---- Make the inner circle of points.  Have to be careful with these, because they 
   #   ---- have to be a certain distance from the origin to line up correctly.  
-  theta <- pi/p
-  R <- r*cos(2*theta) / cos(theta)
+  theta <- pi / p #pi*(p - 2*q) / p #pi/p
+  #R <- r*cos(2*theta) / cos(theta)
+  #int <- theta + 2*theta*seq(0,p-1,1)
+  #i <- cbind(R*cos(int),R*sin(int))
+  #i <- rbind(i,i[1,])
+  #iCircle <- SpatialPoints(i)
+  
+  
+  
+  theta <- pi / p 
+  R <- r*sin(pi/2 * (p-2*q)/p) / sin(pi - pi/p - pi/2*(p-2*q)/p)
   int <- theta + 2*theta*seq(0,p-1,1)
   i <- cbind(R*cos(int),R*sin(int))
   i <- rbind(i,i[1,])
   iCircle <- SpatialPoints(i)
+  
   
   #   ---- Build up the coordinates by alternating the points in the two circles.  
   #   ---- Get rid of last row since only need one to close the loop. 
