@@ -138,7 +138,8 @@ makeStar <- function(p=5,q=2,r=5,class="q",id=NULL,origin=c(0,0),angle1=0,angle2
     c1 <- Polygon(coords)
     c2 <- Polygons(list(c1),ID="1")
     c3 <- SpatialPolygons(list(c2))
-    rt <- c3
+    c4 <- SpatialPolygonsDataFrame(c3,df)
+    rt <- c4
   } else {
     stop("Invalid class specified;  try again with one of 'p', 'l', or 'q'.")
   }
